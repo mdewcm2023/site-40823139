@@ -65,7 +65,20 @@
 <h2>SSH</h2>
 <p><span>SSH為 Secure Shell的縮寫，SSH的傳輸方式可以想像成寄送包裹似的，你寄出的包裹郵差並不會知道內容物(加密)，而且接收包裹的人必須確定是本人才能收!</span><span>透過SSH協定，過程中將會產生兩把鑰匙(一把公鑰及一把私鑰)，公鑰就好比是包裹，上面有寫收件人是誰，而且其他人也都能看到，但取貨仍然需要拿證件(私鑰)才能取。</span></p>
 <p><span>過去的github在不設定SSH的情況下推送需要輸入密碼才能push，不過在公開環境下輸入密碼想必是危險的事!在2021年8月github也宣布了不再支援這種輸入密碼的推送方式(微軟也做了類似的事)，取而代之的是personal access token(把密碼變成加密過的字串，填密碼時就填那串)。然而token也有外流的可能，利用SSH則可以直接推送，連toke都不用打，更為安全且效率(前提是private key有好好保存沒有亂放)。</span></p>
-<h2><span>w1</span></h2><h2>w9</h2>
+<h2>w1</h2>
+<p>本週任務:利用nginx建立非同步網頁伺服器，並呈現網頁</p>
+<ol>
+<li>架設所需環境:取得nginx，利用nignx作為web server</li>
+<li>取得環境參數:在cmd輸入ipconfig取得ipv4的位址</li>
+<li>環境參數調整:開啟編輯器，匯入nginx\conf資料夾中的config檔(nginx.conf)，<br/>修改server name 由localhost改為本地的ipv4地址</li>
+<li>執行nginx，並在網頁上輸入其ip地址，正常情況下會顯示nginx\html底層)的index.html內容</li>
+<li>將自己的網頁內容放入nginx\html中，並重新啟動(啟動後應確認顯示內容)</li>
+<li>進入防火牆的進階設定，選擇輸入規則，並指定為TCP型式，連接埠設定為80，並允許權限，<br/>新增完成後會在新增規則的頁面中看到</li>
+<li>在同網域不同裝置下測試，若有成功顯示網頁則成功<img alt="" height="262" src="blob:https://127.0.0.1:9443/028e7ecb-c0a2-4b97-b3ae-b626472c1481" width="500"/></li>
+</ol>
+<p></p>
+<p>補充資料:</p>
+<p><a href="https://medium.com/starbugs/web-server-nginx-2-bc41c6268646">[基礎觀念系列] Web Server &amp; Nginx — (2) | by 莫力全 Kyle Mo | Starbugs Weekly 星巴哥技術專欄 | Medium</a></p><h2>w9</h2>
 <p>測試</p>
 <p></p>
 <h2>w10</h2>
