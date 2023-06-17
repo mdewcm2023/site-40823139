@@ -142,32 +142,8 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">SSH << <a href='SSH.html'>Previous</a> <a href='w10.html'>Next</a> >> w10<br /><h1>w9</h1>
-<p>Brython 讀取 url中的data</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">url = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
-data = open(url).read().split("\n")
-data = data[1:]
-for i in data:
-    #print(i)
-    stud = i.split(":")[0]
-    score =  i.split(":")[1]
-    print(stud, score)</pre>
-<p>Brython讀取url，並顯示五次考試成績平均(沒分數者，視為0分)，此為chatgpt參考答案1</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">urls = ["https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"]
-
-students = {}
-for url in urls:
-    data = open(url).read().split("\n")[1:]
-    for i in data:
-        stud, score = i.split(":")
-        if not score.isnumeric():
-            score = 0
-        score = int(score)
-        students.setdefault(stud, []).append(score)
-
-for stud, scores in students.items():
-    avg_score = sum(scores) / len(scores)
-    print(stud, avg_score)
-</pre>
+<p>測試</p>
+<p></p>
 <br />SSH << <a href='SSH.html'>Previous</a> <a href='w10.html'>Next</a> >> w10</div>
         
     <!-- footer -->
