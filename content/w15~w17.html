@@ -142,7 +142,30 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">Nginx建立伺服器 << <a href='Nginx建立伺服器.html'>Previous</a> <a href='AI.html'>Next</a> >> AI<br /><h1>w15~w17</h1>
-<br />Nginx建立伺服器 << <a href='Nginx建立伺服器.html'>Previous</a> <a href='AI.html'>Next</a> >> AI</div>
+<p>Task:利用Replit以全雲端方式建立github page</p>
+<p>w15(空的開始)</p>
+<ol>
+<li>註冊Replit後建立Repl，選擇<span>Python template，名稱為w15</span></li>
+<li><span>gin init初始化.git資料，git branch -m main切換至主分支</span></li>
+<li>git submodule add https://github.com/mdecycu/cmsimde.git cmsimde 抓取子模組</li>
+<li><span>建立 .gitignore，避免多餘檔案傳到倉儲</span></li>
+<li>pip install flask flask_cors bs4 lxml pelican markdown gevent 下載所需模組</li>
+<li>Run後進入靜態網站，自行更改密碼及內容</li>
+<li>在config中置入token給予上傳權限</li>
+<li><span>git remote add origin 倉儲url設定推送的倉儲位置</span></li>
+<li>git add-&gt;git commit(要在Replit的.git端，而不是直接在shell)-&gt;git push推送</li>
+</ol>
+<p>w16~w17</p>
+<ol>
+<li>使用<a href="https://github.com/mdecycu/cmsimde_site">mdecycu/cmsimde_site</a>建置新的倉儲(按下create a repository)</li>
+<li>建立新的Repl，並選擇python template，此時選擇url匯入，並貼上該新倉儲的url</li>
+<li>pip install flask flask_cors bs4 lxml pelican markdown gevent 下載所需模組</li>
+<li>Run後進入靜態網站，自行更改密碼及內容</li>
+<li>在config中置入token給予上傳權限</li>
+<li>git add-&gt;git commit-&gt;git push推送</li>
+</ol>
+<p>w15 vs w16~w17<br/>w15因為建置的時候少了<span>.gitignore所以需要自己新增，且倉儲內沒有檔案，需要自己clone倉儲內容及cmsimde，後兩週則利用老師建立好的template，因此速度比較快。</span></p>
+<p>如果Replit是利用github建立，可以直接選擇倉儲，並且推送時不用toke即可推送，但相對的安全性也就比較低!</p><br />Nginx建立伺服器 << <a href='Nginx建立伺服器.html'>Previous</a> <a href='AI.html'>Next</a> >> AI</div>
         
     <!-- footer -->
       <div class="container">
