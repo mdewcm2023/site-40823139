@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='課程議題.html'>課程議題</a><li class='has-children'><a href='課程整理.html'>課程整理</a><ul class='dropdown'><li><a href='w9.html'>w9</a><li><a href='w10.html'>w10</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='w17.html'>w17</a></li></ul><li class='has-children'><a href='AI.html'>AI</a><ul class='dropdown'><li><a href='Chatgpt.html'>Chatgpt</a><li><a href='BingAI.html'>BingAI</a></li></ul><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='課程議題.html'>課程議題</a><li class='has-children'><a href='課程整理.html'>課程整理</a><ul class='dropdown'><li><a href='CMD命令提示字元.html'>CMD命令提示字元</a><li><a href='網頁與倉儲.html'>網頁與倉儲</a><li><a href='SSH.html'>SSH</a><li><a href='w9.html'>w9</a><li><a href='w10.html'>w10</a><li><a href='w15.html'>w15</a><li><a href='w16.html'>w16</a><li><a href='w17.html'>w17</a></li></ul><li class='has-children'><a href='AI.html'>AI</a><ul class='dropdown'><li><a href='工業與AI.html'>工業與AI</a><li><a href='Chatgpt.html'>Chatgpt</a><li><a href='New bing.html'>New bing</a></li></ul><li class='has-children'><a href='Other.html'>Other</a><ul class='dropdown'><li><a href='資料可視化-Plotly繪圖.html'>資料可視化-Plotly繪圖</a></li></ul><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,156 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Chatgpt << <a href='Chatgpt.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>BingAI</h1><br />Chatgpt << <a href='Chatgpt.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
+    <div id="tipue_search_content">Other << <a href='Other.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython<br /><h1>資料可視化-Plotly繪圖</h1>
+<p>最近同學在另一個課程遇到的有趣問題，在此寫了一個簡單的繪圖code供參考<br/>目的:已從網站中取得數據的json檔之url，該如何在網頁上呈現圖表<br/><br/>為使範例圖形簡單些，簡化過的json內容如下</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">{
+  "data": [
+    {"x": -4, "y": 0},
+    {"x": -3, "y": 1},
+    {"x": -2, "y": 2},
+    {"x": 0, "y": 3},
+    {"x": 2, "y": 2},
+    {"x": 3, "y": 1},
+    {"x": 4, "y": 0}
+  ]
+}</pre>
+<p>brython及plotly.js環境建立()</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">&lt;script src="./../cmsimde/static/brython.js"&gt;&lt;/script&gt;
+&lt;script src="./../cmsimde/static/brython_stdlib.js"&gt;&lt;/script&gt;
+&lt;script&gt;// &lt;![CDATA[
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/']});
+}
+// ]]&gt;&lt;/script&gt;
+&lt;p id="brython_div"&gt;&lt;/p&gt;</pre>
+<script src="/get_page/cmsimde/static/brython.js"></script>
+<script src="/get_page/cmsimde/static/brython_stdlib.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/']});
+}
+</script>
+<p id="brython_div"></p>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="./../cmsimde/static/brython.js"></script>
+<script src="./../cmsimde/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="./../cmsimde/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="./../cmsimde/static/ace/ace.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="./../cmsimde/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["kw_py_src1"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
+<p>
+<script type="text/python3">
+from browser import document as doc
+import ace
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
+def run1():
+    # 利用 get 取下 src 變數值
+    try:
+        url = doc.query["src"]
+    except:
+        url = "https://gist.githubusercontent.com/40823139/7ab8efaa708a064ed3942c28aefcfc33/raw/2fc986b4f7f4c480a16db72cfc7946a7bceb4d5a/get_chart2.py"
+    prog = open(url).read()
+
+    # 將程式載入編輯區
+    Ace1.editor.setValue(prog)
+    Ace1.editor.scrollToRow(0)
+    Ace1.editor.gotoLine(0)
+    # 直接執行程式
+    #ns = {'__name__':'__main__'}
+    #exec(prog, ns)
+    # 按下 run 按鈕
+    Ace1.run()
+
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
+doc['kw_run1'].bind('click', Ace1.run)
+doc['kw_show_console1'].bind('click', Ace1.show_console)
+doc['kw_clear_console1'].bind('click', Ace1.clear_console)
+doc['clear_bd1'].bind('click', clear_bd1)
+# 呼叫函式執行
+run1()
+</script>
+</p>
+<p><!-- add 1 to 100 開始 -->
+<script type="text/python3">
+from browser import document as doc
+import ace
+
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+
+# 利用 ace 中的 Editor 建立 Ace2 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
+Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+
+add1to100_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/c48e37714f055c3a0027cbfef59e442a6ef659b9/from_1_add_to_100_1.py"
+
+# 從 gist 取得程式碼
+add_src = open(add1to100_url).read()
+def add(ev):
+    Ace2.editor.setValue(add_src)
+    Ace2.editor.scrollToRow(0)
+    Ace2.editor.gotoLine(0)
+    Ace2.run()
+
+# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
+doc["add1to100"].bind('click', add)
+</script>
+</p>
+<p><!-- add 1 to 100 結束--></p>
+<!-- editor1 開始 -->
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<p><!-- 存擋表單開始 --></p>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
+<p><!-- 存擋表單結束 --></p>
+<p></p>
+<p><!-- 執行與清除按鈕開始 --></p>
+<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p><!-- 執行與清除按鈕結束 --></p>
+<p></p>
+<p><!-- 程式執行 ouput 區 --></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
+<p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
+<div id="brython_div1"></div>
+<!-- editor1 結束 --><hr/><!-- ########################################## -->
+<p></p>
+<p>補充資料:<a href="https://mde.tw/wcm2023/content/Brython_ex2.html">wcm2023 (mde.tw)</a></p><br />Other << <a href='Other.html'>Previous</a> <a href='Brython.html'>Next</a> >> Brython</div>
         
     <!-- footer -->
       <div class="container">
