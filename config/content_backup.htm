@@ -18,7 +18,8 @@
 <li>有人知道中華電信所提供的所謂光世代連線, 在某些時段, 用戶的網路連線協定只有 IPv4 嗎? 這會對使用者造成哪些影響?</li>
 <li>Python 3.11.2 是目前最新的版本 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EcsucQG0hGBPvGhckXUXhtwBW9gHS7PI-PE-moKe1vVbdg?e=8Xs9T0">下載可攜 Python3.11.2_for_NGSolve.7z</a>), 加上開源的 NGSolve 套件, 可以進行各種工程設計分析, 但因為<span> </span><a href="https://pypi.org/project/PySide2/">Pyside2</a><span> </span>尚未支援 Python 3.10 以上的版本, 因此若要導入<span> </span><a href="https://github.com/NGSolve/ngsgui">ngsgui</a>, 就必須退回 Python 3.10.8 版 (<a href="https://nfuedu-my.sharepoint.com/:u:/g/personal/yen_nfu_edu_tw/EWWklzSXEqZAoAsF7YCiUdQBq3Frt-VQl9p0ah8ZE2AoBQ?e=qNMs7W">下載可攜 Python3108_for_2023.7z</a>, 支援 NGSolve with ngsgui, tcc and gnuplot, 其中 ngsugi 仍需要 debug).</li>
 </ol>
-<p><img alt="" class="add_border" height="220" src="https://mde.tw/wcm2023/images/Pyside2_right_now_no_for_Python3.11.png" width="600"/></p><h1>課程整理</h1>
+<p><img alt="" class="add_border" height="220" src="https://mde.tw/wcm2023/images/Pyside2_right_now_no_for_Python3.11.png" width="600"/></p>
+<h1>課程整理</h1>
 <h2>CMD命令提示字元</h2>
 <p>在計算機程式中將大量運用到CMD啟動近端資料夾的引擎，CMD即命令提示字元(command縮寫)，該工具就是所謂的Shell(殼層)。</p>
 <p>所謂的Shell是指<span>「為使用者提供使用者介面」的軟體，為User跟System溝通的橋樑(否則人類沒辦法直接跟電腦溝通)，而我們在Windows開啟檔案時大多是到檔案總管中點擊圖示開啟檔案，這樣的圖形化介面(GUI)能供使用者更直覺的使用(不用記命令)。</span></p>
@@ -64,48 +65,11 @@
 <h2>SSH</h2>
 <p><span>SSH為 Secure Shell的縮寫，SSH的傳輸方式可以想像成寄送包裹似的，你寄出的包裹郵差並不會知道內容物(加密)，而且接收包裹的人必須確定是本人才能收!</span><span>透過SSH協定，過程中將會產生兩把鑰匙(一把公鑰及一把私鑰)，公鑰就好比是包裹，上面有寫收件人是誰，而且其他人也都能看到，但取貨仍然需要拿證件(私鑰)才能取。</span></p>
 <p><span>過去的github在不設定SSH的情況下推送需要輸入密碼才能push，不過在公開環境下輸入密碼想必是危險的事!在2021年8月github也宣布了不再支援這種輸入密碼的推送方式(微軟也做了類似的事)，取而代之的是personal access token(把密碼變成加密過的字串，填密碼時就填那串)。然而token也有外流的可能，利用SSH則可以直接推送，連toke都不用打，更為安全且效率(前提是private key有好好保存沒有亂放)。</span></p>
-<h2>w9</h2>
-<p>Brython 讀取 url中的data</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">url = "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt"
-data = open(url).read().split("\n")
-data = data[1:]
-for i in data:
-    #print(i)
-    stud = i.split(":")[0]
-    score =  i.split(":")[1]
-    print(stud, score)</pre>
-<p>Brython讀取url，並顯示五次考試成績平均(沒分數者，視為0分)，此為chatgpt參考答案1</p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">urls = ["https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw5.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw6-2.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/075c06b2baf1bb07665f1a98e9f88f7e81ebe1a4/1aw8.txt",        "https://gist.githubusercontent.com/mdecycu/07f0f0817115a68d55d6ca603c5ab393/raw/239f4eb84715978daead6ac1f231af7f190a2a5e/1aw9.txt"]
-
-students = {}
-for url in urls:
-    data = open(url).read().split("\n")[1:]
-    for i in data:
-        stud, score = i.split(":")
-        if not score.isnumeric():
-            score = 0
-        score = int(score)
-        students.setdefault(stud, []).append(score)
-
-for stud, scores in students.items():
-    avg_score = sum(scores) / len(scores)
-    print(stud, avg_score)
-</pre>
-<h2>w10</h2>
-<p>本週任務:利用nginx建立非同步網頁伺服器，並呈現網頁</p>
-<ol>
-<li>架設所需環境:取得nginx，利用nignx作為web server</li>
-<li>取得環境參數:在cmd輸入ipconfig取得ipv4的位址</li>
-<li>環境參數調整:開啟編輯器，匯入nginx\conf資料夾中的config檔(nginx.conf)，<br/>修改server name 由localhost改為本地的ipv4地址</li>
-<li>執行nginx，並在網頁上輸入其ip地址，正常情況下會顯示nginx\html底層)的index.html內容</li>
-<li>將自己的網頁內容放入nginx\html中，並重新啟動(啟動後應確認顯示內容)</li>
-<li>進入防火牆的進階設定，選擇輸入規則，並指定為TCP型式，連接埠設定為80，並允許權限，<br/>新增完成後會在新增規則的頁面中看到</li>
-<li>在同網域不同裝置下測試，若有成功顯示網頁則成功<img alt="" height="262" src="blob:https://127.0.0.1:9443/028e7ecb-c0a2-4b97-b3ae-b626472c1481" width="500"/></li>
-</ol>
+<h2><span>w1</span></h2><h2>w9</h2>
+<p>測試</p>
 <p></p>
-<p>補充資料:</p>
-<p><a href="https://medium.com/starbugs/web-server-nginx-2-bc41c6268646">[基礎觀念系列] Web Server &amp; Nginx — (2) | by 莫力全 Kyle Mo | Starbugs Weekly 星巴哥技術專欄 | Medium</a></p>
-<h2>w15</h2>
+<h2>w10</h2>
+<p></p><h2>w15</h2>
 <h2>w16</h2>
 <h2>w17</h2>
 <h1>AI</h1>
@@ -132,7 +96,8 @@ for stud, scores in students.items():
 <h2>工業與AI</h2>
 <p>在工業中已經運用了非常多的AI，比如說廣明旗下的達明機器人(目前在協作機器人是全球第二)，除了手臂原本就內建視覺鏡頭，現在又導入了AI資料庫，在影像辨識能力上提升了不少。那麼，明明已經有AI了，為什麼不在投入工廠的初期就全面應用AI?</p>
 <p>模型需要訓練，而初期的模型出錯率很高，不可能在實體環境下直接邊學邊用(否則應該第一天就撞機了)，因此還是會以原先準確率高的"老辦法"主，AI為輔的方式進行控制!當有足夠的實際環境參數，並在虛擬環境中初步學習完成後才有可能在實體環境進行第二階段的學習，依此虛實整合還是很重要，而不是把AI直接放在實際環境它就會自己開始學。</p>
-<p></p><h2>Chatgpt</h2>
+<p></p>
+<h2>Chatgpt</h2>
 <div class="flex-1 overflow-hidden">
 <div class="react-scroll-to-bottom--css-edyhu-79elbk h-full dark:bg-gray-800">
 <div class="react-scroll-to-bottom--css-edyhu-1n7m0yu">
@@ -156,14 +121,16 @@ for stud, scores in students.items():
 </div>
 </div>
 </div>
-</div><h2>New bing</h2>
+</div>
+<h2>New bing</h2>
 <p>在微軟投資了OpenAI數十億的情況下，基於GPT-4框架的New bing就產生了，與chatgpt不同的是</p>
 <ol>
 <li>chatgpt plus要錢，而bing chat免費</li>
 <li>chatgpt的資料庫只截至9月</li>
 <li>bing chat能夠搜尋及生成圖片</li>
 <li>chatgpt在網路上有非常多外掛程式可用</li>
-</ol><h1>Other</h1>
+</ol>
+<h1>Other</h1>
 <h2>資料可視化-Plotly繪圖</h2>
 <p>最近同學在另一個課程遇到的有趣問題，在此寫了一個簡單的繪圖code供參考<br/>目的:已從網站中取得數據的json檔之url，該如何在網頁上呈現圖表<br/><br/>為使範例圖形簡單些，簡化過的json內容如下</p>
 <pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">{
@@ -313,7 +280,8 @@ doc["add1to100"].bind('click', add)
 <div id="brython_div1"></div>
 <!-- editor1 結束 --><hr/><!-- ########################################## -->
 <p></p>
-<p>補充資料:<a href="https://mde.tw/wcm2023/content/Brython_ex2.html">wcm2023 (mde.tw)</a></p><h1>Brython</h1>
+<p>補充資料:<a href="https://mde.tw/wcm2023/content/Brython_ex2.html">wcm2023 (mde.tw)</a></p>
+<h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
